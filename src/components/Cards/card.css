@@ -1,0 +1,28 @@
+#paperCss{
+    height: 150px;
+    border-radius: 20px;
+}
+
+#gridButton{
+    display:grid;
+    align-self: center;
+}
+#tittleTemplate{
+    padding-bottom:6%
+}
+
+#quantityTempaltes{
+    font-weight: 700;
+}
+
+/* card.css */
+
+
+.perfect-row{
+    background-color: #b0feb0;
+}
+
+.expired-row{
+    background-color: #feb0b0;
+}
+

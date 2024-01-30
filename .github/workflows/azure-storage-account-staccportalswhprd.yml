@@ -1,0 +1,36 @@
+name: Build and Deploy to Azure Storage
+
+on:
+  push:
+    branches:
+      - main  # Ajusta esto a tu rama de producción
+  pull_request:
+        types: [opened, synchronize, reopened, closed]
+        branches:
+          - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_GET_TEMPLATES_DATA: 'https://fa-template-report-prd.azurewebsites.net/api/get_templates_orders?code=Qq_F2ADbm2QeNVgMMnXS-X9tKMIQyI0wXRloEQWkrp7lAzFuj0jW1A=='
+    steps:
+    - uses: actions/checkout@v2
+
+    # Paso 1: Configurar Node.js
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'  # Ajusta esto a tu versión de Node.js
+
+    # Paso 2: Instalar dependencias y construir el proyecto
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build  # Asume que tienes un script 'build' en package.json
+
+    # Paso 3: Desplegar a Azure Blob Storage
+    - name: 'Deploy to Azure Blob Storage'
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az storage blob upload-batch -s ./dist -d \$web --account-name staccportalswhprd --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY_PRD }} --overwrite true
