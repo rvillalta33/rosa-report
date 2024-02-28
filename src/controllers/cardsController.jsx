@@ -5,28 +5,52 @@ import useTableController from './tableController';
 const useCardsController = () => {
 
     //LOCAL CONSTANTS   -----------------------------------------------------------------------------------------
-    const { responseData } = React.useContext(StoreContext);
-    const [propertykpi1, setPropertykpi1] = React.useState(0)
-    const [propertykpi2, setPropertykpi2] = React.useState(0)
+    const { responseData, loading } = React.useContext(StoreContext);
+
     const { ApplyFilterTable } = useTableController();
 
-
-    //USEEFFECT--------------------------------------------------------------------------------------
-
+    const [totalOrdersValues, setTotalOrdersValues] = React.useState({})
+    const [shipmentTypeValues, setShipmentTypeValues] = React.useState({})
+    const [deliveryTypeValues, setDeliveryTypeValues] = React.useState({})
     React.useEffect(() => {
-        if (responseData.length !== 0) {
-            setPropertykpi1(responseData.on_time_delivery_list.length)
-            setPropertykpi2(responseData.tmp_not_considered.length)
+        if (responseData.data) {
+            setTotalOrdersValues(responseData.data.totalOrders)
+            setShipmentTypeValues(responseData.data.shipmentType)
+            setDeliveryTypeValues(responseData.data.deliveryType)
         }
     }, [responseData])
+
+
+    const dataTotalOrders = [
+        { label: 'Completed', value: totalOrdersValues.completed, color: '#6ec2d5' },
+        { label: 'Working', value: totalOrdersValues.working, color: '#5375cf' },
+        { label: 'Created', value: totalOrdersValues.created, color: '#69b97b' },
+    ];
+
+    const dataShipmentType = [
+        { label: 'Import', value: shipmentTypeValues.import, color: '#6ec2d5' },
+        { label: 'Export', value: shipmentTypeValues.export, color: '#34589e' },
+        { label: 'One Way', value: shipmentTypeValues.oneWay, color: '#5375cf' },
+        { label: 'National', value: shipmentTypeValues.national, color: '#69b97b' },
+    ];
+
+    const dataDeliveryType = [
+        { label: 'Live', value: deliveryTypeValues.live, color: '#6fc1d5' },
+        { label: 'Drop', value: deliveryTypeValues.drop, color: '#5375ce' }
+    ];
+    //USEEFFECT--------------------------------------------------------------------------------------
 
 
 
 
     return {
-        propertykpi1,
-        propertykpi2,
+
         ApplyFilterTable,
+        dataTotalOrders,
+        dataShipmentType,
+        dataDeliveryType,
+        loading,
+
     };
 };
 

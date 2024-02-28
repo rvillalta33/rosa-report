@@ -11,18 +11,95 @@ const useTableController = () => {
     const [tableNotConsidered, setTableNotConsidered] = React.useState([])
     const columns = [
         {
-            field: 'tmp',
-            headerName: 'TMP'
+            field: 'rep',
+            headerName: 'Rep #'
 
         },
         {
-            field: 'division',
-            headerName: 'Division'
+            field: 'tmp',
+            headerName: 'TMP'
         },
         {
-            field: 'customer',
-            headerName: 'Customer'
+            field: 'terminal',
+            headerName: 'Terminal'
+        },
+        {
+            field: 'container',
+            headerName: 'Container'
+
+        },
+        {
+            field: 'chassisNumber',
+            headerName: 'Chassis Number'
+        },
+        {
+            field: 'ref_2',
+            headerName: 'Ref# 2'
+        },
+        {
+            field: 'mbl',
+            headerName: 'MBL #'
+
+        },
+        {
+            field: 'size_type',
+            headerName: 'Size and Type'
+        },
+        {
+            field: 'eta',
+            headerName: 'ETA'
+        },
+        {
+            field: 'weight',
+            headerName: 'Weight'
+
+        },
+        {
+            field: 'Type',
+            headerName: 'Type'
+        },
+        {
+            field: 'empty_loaded',
+            headerName: 'L/E'
+        },
+        {
+            field: 'delivery_type',
+            headerName: 'Del Type'
+
+        },
+        {
+            field: 'live_unlaod_drop',
+            headerName: 'Live Unload/Drop'
+        },
+        {
+            field: 'date_available',
+            headerName: 'Date Available'
+        },
+        {
+            field: 'container_status',
+            headerName: 'Container Status'
+
+        },
+        {
+            field: 'ops_status',
+            headerName: 'Ops Status'
+
+        },
+        {
+            field: 'date_returned',
+            headerName: 'Date Returned'
+
+        },
+        {
+            field: 'date_outgate',
+            headerName: 'Date Outgate'
+
+        },
+        {
+            field: 'date_ingate',
+            headerName: 'Date Ingate'
         }
+        
         // {
         //     field: 'created',
         //     headerName: 'Created',
@@ -42,8 +119,8 @@ const useTableController = () => {
     //USEEFFECT--------------------------------------------------------------------------------------
 
     React.useEffect(() => {
-        setTableOnTime(responseData.on_time_delivery_list)
-        setTableNotConsidered(responseData.tmp_not_considered)
+        // setTableOnTime(responseData.on_time_delivery_list)
+        // setTableNotConsidered(responseData.tmp_not_considered)
     }, [responseData])
 
 

@@ -22,11 +22,14 @@ export const StoreProvider = ({ children }) => {
 
     //FUNCTIONS OR METHODS-----------------------------------------------------------------------------------------
     const fetchData = () => {
+
         setLoading(true)
         fetchTemplatesData().then((data) => {
-            setResponseData(data.data)
-            setTableLocalData(data.data.on_time_delivery_list)
-            setLoading(false)
+            // debugger
+            setResponseData(data)
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000)
 
         })
     }
