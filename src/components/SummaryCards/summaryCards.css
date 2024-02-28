@@ -1,0 +1,9 @@
+#vertical-text {
+    writing-mode: vertical-lr;
+    rotate: 180deg;
+    align-self: center;
+    font-weight: 700;
+    display: flex;
+    margin-left: 10px;
+
+}
